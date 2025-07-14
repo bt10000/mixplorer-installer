@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mixplorer Installer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 2rem; background: #f4f4f4; }
+    h1 { color: #333; }
+    button {
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Install or Open Mixplorer</h1>
+  <p>If Mixplorer is already installed, it will open. Otherwise, the APK will download.</p>
+  
+  <button onclick="installOrOpen()">Continue</button>
+
+  <script>
+    function installOrOpen() {
+      const now = Date.now();
+      window.location = "intent://#Intent;package=com.mixplorer;scheme=content;end;";
+      
+      setTimeout(() => {
+        const elapsed = Date.now() - now;
+        if (elapsed < 2000) {
+          // Fallback: direct download link to your APK
+          window.location.href = "https://github.com/bt10000/mixplorer-installer/releases/download/v2.0/mixplorer.apk";
+        }
+      }, 1500);
+    }
+  </script>
+
+</body>
+</html>
