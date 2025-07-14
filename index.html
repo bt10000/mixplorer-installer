@@ -1,43 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Install or Open Mixplorer</title>
+  <title>Open Mixplorer</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      font-family: sans-serif;
       text-align: center;
-      margin-top: 60px;
+      padding-top: 100px;
     }
-    button {
-      padding: 16px 30px;
-      font-size: 18px;
-      background-color: #4CAF50;
+    a {
+      display: inline-block;
+      padding: 20px 40px;
+      background: #1e90ff;
       color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
+      font-size: 24px;
+      border-radius: 12px;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <h1>Mixplorer Installer</h1>
-  <p>If Mixplorer is installed, it will open. Otherwise, the APK will download.</p>
-  <button onclick="openMixplorer()">Open or Install</button>
-
-  <script>
-    function openMixplorer() {
-      // Create a hidden iframe to launch the intent without triggering Play Store fallback
-      let iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.src = 'intent://#Intent;component=com.mixplorer/com.mixplorer.activities.BrowseActivity;end';
-      document.body.appendChild(iframe);
-
-      // Fallback: Download APK after 3 seconds
-      setTimeout(() => {
-        window.location.href = 'https://github.com/bt10000/mixplorer-installer/releases/download/v2.0/mixplorer.apk';
-      }, 3000);
-    }
-  </script>
+  <h1>Tap Repeatedly to Open Mixplorer</h1>
+  <a href="intent://#Intent;component=com.mixplorer/com.mixplorer.activities.BrowseActivity;end">
+    🚪 OPEN MIXPLORER
+  </a>
 </body>
 </html>
