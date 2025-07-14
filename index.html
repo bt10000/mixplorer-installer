@@ -1,47 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mixplorer Installer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Install Mixplorer</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 2rem; background: #f4f4f4; }
-    h1 { color: #333; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
     button {
-      font-size: 1.2rem;
-      padding: 1rem 2rem;
+      font-size: 20px;
+      padding: 15px 30px;
       background-color: #4CAF50;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
     }
   </style>
 </head>
 <body>
-
-  <h1>Install or Open Mixplorer</h1>
-  <p>If Mixplorer is already installed, it will open. Otherwise, the APK will download.</p>
-  
-  <button onclick="installOrOpen()">Continue</button>
+  <h1>Install Mixplorer</h1>
+  <p>If Mixplorer is installed, it will open. Otherwise, the APK will download.</p>
+  <a id="intentLink" href="intent://#Intent;package=com.mixplorer;scheme=content;end">
+    <button>Open or Install</button>
+  </a>
 
   <script>
-    function installOrOpen() {
-      const now = Date.now();
-      window.location = "intent://#Intent;package=com.mixplorer;scheme=content;end;";
-      
-      setTimeout(() => {
-        const elapsed = Date.now() - now;
-        if (elapsed < 2000) {
-          // Fallback: direct download link to your APK
-          window.location.href = "https://github.com/bt10000/mixplorer-installer/releases/download/v2.0/mixplorer.apk";
-        }
-      }, 1500);
-    }
+    document.getElementById("intentLink").addEventListener("click", function () {
+      setTimeout(function () {
+        // Only fallback if the app didn’t open
+        window.location.href = "https://github.com/bt10000/mixplorer-installer/releases/download/v2.0/mixplorer.apk";
+      }, 3000); // Give the system enough time to handle the intent
+    });
   </script>
-
 </body>
 </html>
