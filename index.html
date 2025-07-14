@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Install Mixplorer</title>
+  <title>Install or Open Mixplorer</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -10,29 +10,30 @@
       margin-top: 50px;
     }
     button {
-      font-size: 20px;
       padding: 15px 30px;
+      font-size: 18px;
       background-color: #4CAF50;
       color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <h1>Install Mixplorer</h1>
-  <p>If Mixplorer is installed, it will open. Otherwise, the APK will download.</p>
-  <a id="intentLink" href="intent://#Intent;package=com.mixplorer;scheme=content;end">
-    <button>Open or Install</button>
-  </a>
+  <h1>Mixplorer Installer</h1>
+  <p>Tapping the button will try to open Mixplorer if installed. If not, it will download the APK.</p>
+  <button id="installBtn">Open or Install Mixplorer</button>
 
   <script>
-    document.getElementById("intentLink").addEventListener("click", function () {
-      setTimeout(function () {
-        // Only fallback if the app didn’t open
-        window.location.href = "https://github.com/bt10000/mixplorer-installer/releases/download/v2.0/mixplorer.apk";
-      }, 3000); // Give the system enough time to handle the intent
+    document.getElementById('installBtn').addEventListener('click', function() {
+      // Try to open the app using Android intent
+      window.location = 'intent://mixinstaller#Intent;package=com.mixplorer;scheme=mix;action=android.intent.action.VIEW;end';
+
+      // Fallback download if app doesn’t open in 3 seconds
+      setTimeout(() => {
+        window.location.href = 'https://github.com/bt10000/mixplorer-installer/releases/download/v2.0/mixplorer.apk';
+      }, 3000);
     });
   </script>
 </body>
