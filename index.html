@@ -27,10 +27,13 @@
 
   <script>
     function openMixplorer() {
-      // Try to open Mixplorer directly via main activity
-      window.location.href = 'intent://#Intent;component=com.mixplorer/com.mixplorer.activities.BrowseActivity;end';
+      // Create a hidden iframe to launch the intent without triggering Play Store fallback
+      let iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = 'intent://#Intent;component=com.mixplorer/com.mixplorer.activities.BrowseActivity;end';
+      document.body.appendChild(iframe);
 
-      // Fallback: Download APK after 3 seconds if nothing happens
+      // Fallback: Download APK after 3 seconds
       setTimeout(() => {
         window.location.href = 'https://github.com/bt10000/mixplorer-installer/releases/download/v2.0/mixplorer.apk';
       }, 3000);
